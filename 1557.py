@@ -1,3 +1,10 @@
+def countDigit(n):
+    count = 0
+    while n != 0:
+        n //= 10
+        count += 1
+    return count
+
 entradas = []
 
 entrada = int(input())
@@ -8,25 +15,22 @@ while entrada != 0:
 
 for entry in entradas:
     result = 1
+    justify = countDigit(2 ** ((entry-1) * 2))
+    
     # Calcular metade superior a diagonal principal
     # depois transport para a parte inferior da diagonal secundária
     for i in range(entry):
         for j in range(entry):
             # Calcular
             # Metade superior da matriz
-            if (i + j <= entry - 1):
-                if(min(i,j) == 0):
-                    result = 1
-                else:
-                    result = min(i,j) + 1
-            else:
-                result = min((entry-1)-j, (entry-1)-i) + 1
+            # 2^(i+j)
+            result = 2 ** (i+j)
             
             # Imprimir
             if j > 0:
-                print(' {:>3s}'.format(str(result)), end='')            
+                print(' ' + str(result).rjust(justify), end='')            
             else:
-                print('{:>3s}'.format(str(result)), end='')
+                print(str(result).rjust(justify), end='')
 
         print()
     print()
