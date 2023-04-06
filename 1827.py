@@ -4,30 +4,29 @@
 # Outer Ring = 0
 # Inner Ring = 1
 
-entradas = []
+while True:
+    try:
+        entrada = int(input())
+        for i in range(entrada):
+            for j in range(entrada):
+                # Calcular
+                result = 0
 
-entrada = int(input())
+                if i == j:
+                    result = 2
+                
+                if (i + j) + 1 == entrada:
+                    result = 3
 
-while entrada != 0:
-    entradas.append(entrada)
-    entrada = int(input())
+                if i >= int(entrada / 3) and j >= int(entrada / 3) and i < entrada - int(entrada / 3) and j < entrada - int(entrada / 3):
+                    result = 1
 
-for entry in entradas:
-    for i in range(entry):
-        for j in range(entry):
-            # Calcular
-            result = 0
-
-            if i == j:
-                result = 2
-            
-            if (i + j) + 1 == entry:
-                result = 3
-
-            if int(entry%2) > 0 and i == int(entry/2) and j == int(entry/2):
-                result = 4
-            
-            # Imprimir
-            print(str(result), end='')
+                if int(entrada % 2) > 0 and i == int(entrada / 2) and j == int(entrada / 2):
+                    result = 4
+                
+                # Imprimir
+                print(str(result), end='')
+            print()
         print()
-    print()
+    except EOFError:
+        break
